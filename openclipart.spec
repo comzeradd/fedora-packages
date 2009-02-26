@@ -1,6 +1,6 @@
 Name:           openclipart
 Version:        0.18
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Open Clip Art Library
 
 Group:          Applications/Publishing
@@ -49,5 +49,8 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Feb 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.18-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Thu Feb 14 2008 Lubomir Kundrak <lkundrak@redhat.com> 0.18-1
 - Initial packaging attempt
