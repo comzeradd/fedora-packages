@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=SkyViewer
+Comment=Display FITS files with HEALPix-based skymaps
+GenericName=Sky Viewer
+Exec=skyviewer
+Icon=skyviewer
+Categories=Education;Astronomy;
+MimeType=image/fits;
+Terminal=false
