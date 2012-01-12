@@ -1,6 +1,6 @@
 Name:           clipit
 Version:        1.4.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A lightweight, fully featured GTK+ clipboard manager
 
 Group:          User Interface/Desktops
@@ -80,6 +80,9 @@ fi
 
 
 %changelog
+* Thu Jan 12 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.1-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Thu Jul 14 2011 Nikos Roussos <nikos@autoverse.net> 1.4.1-3
 - Fixed dependency missing, de translation bug, desktop icon bug
 
