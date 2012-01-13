@@ -1,6 +1,6 @@
 Name:           idjc
 Version:        0.8.6
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        DJ application for streaming audio
 
 Group:          Applications/Multimedia
@@ -68,6 +68,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.6-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Sun Dec 04 2011 Nikos Roussos <nikos@autoverse.net> 0.8.6-4
 - Added README.Fedora for codecs
 - Changed category to Multimedia
