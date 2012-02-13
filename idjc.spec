@@ -1,6 +1,6 @@
 Name:           idjc
-Version:        0.8.6
-Release:        5%{?dist}
+Version:        0.8.7
+Release:        1%{?dist}
 Summary:        DJ application for streaming audio
 
 Group:          Applications/Multimedia
@@ -43,6 +43,7 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
+%find_lang %{name}
 desktop-file-install --delete-original \
     --remove-category=Application \
     --add-category="AudioVideo" \
@@ -54,7 +55,7 @@ desktop-file-install --delete-original \
 rm -rf %{buildroot}
 
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,-)
 %{_bindir}/%{name}*
 %{python_sitelib}/%{name}*
@@ -68,6 +69,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Feb 13 2012 Nikos Roussos <nikos@autoverse.net> 0.8.7-1
+- Update to 0.8.7
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.6-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
