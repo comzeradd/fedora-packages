@@ -1,6 +1,6 @@
 Name:           sparkleshare
 Version:        0.8.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 Group:          Applications/Productivity
@@ -21,6 +21,7 @@ BuildRequires:  nautilus-python-devel >= 1.1
 BuildRequires:  gettext
 Requires:       git
 Requires:       yelp
+Requires:       nautilus-python >= 1.1
 
 
 #https://fedoraproject.org/wiki/Packaging:Mono#Empty_debuginfo
@@ -85,6 +86,9 @@ fi
 
 
 %changelog
+* Thu Mar 01 2012 Nikos Roussos <nikos@autoverse.net> 0.8.0-3
+- added nautilus-python as dependency
+
 * Tue Feb 14 2012 Nikos Roussos <nikos@autoverse.net> 0.8.0-2
 - gettext added as buildrequirement, permissions error fixes
 
