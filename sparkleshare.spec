@@ -1,20 +1,21 @@
 Name:           sparkleshare
-Version:        0.8.0
-Release:        4%{?dist}
+Version:        0.8.3
+Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 Group:          Applications/Productivity
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
-Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-%{version}.tar.gz
+Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
 
 BuildRequires:  mono-devel
 BuildRequires:  ndesk-dbus-devel
 BuildRequires:  ndesk-dbus-glib-devel
 BuildRequires:  notify-sharp-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  intltool 
-BuildRequires:  gnome-doc-utils
+BuildRequires:  intltool
+#Help files removed on this version
+#BuildRequires:  gnome-doc-utils
 BuildRequires:  nant
 BuildRequires:  webkit-sharp-devel
 BuildRequires:  nautilus-python-devel >= 1.1
@@ -43,13 +44,16 @@ system and synchronized elsewhere.
 %build
 #disable user help because of a bug
 #https://github.com/hbons/SparkleShare/issues/557
-%configure --prefix=/usr --disable-user-help
+#%configure --prefix=/usr --disable-user-help
+#Help files removed on this version
+%configure --prefix=/usr
 GMCS_FLAGS=-codepage:utf8 make
 
 
 %install
 make install DESTDIR=%{buildroot}
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
+desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}-invite-opener.desktop
 %find_lang %{name}
 
 
@@ -75,7 +79,8 @@ fi
 %{_libdir}/%{name}/
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
-%{_mandir}/man1/%{name}.1.gz
+%{_datadir}/applications/%{name}-invite-opener.desktop
+#%{_mandir}/man1/%{name}.1.gz
 %{_datadir}/icons/hicolor/16x16/apps/folder-%{name}.png
 %{_datadir}/icons/hicolor/22x22/apps/folder-%{name}.png
 %{_datadir}/icons/hicolor/24x24/apps/folder-%{name}.png
@@ -88,6 +93,9 @@ fi
 
 
 %changelog
+* Wed Mar 14 2012 Nikos Roussos <nikos@autoverse.net> 0.8.3-1
+- Update to 0.8.3
+
 * Fri Mar 02 2012 Dan Horák <dan[at]danny.cz> 0.8.0-4
 - set ExclusiveArch
 
