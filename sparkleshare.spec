@@ -1,12 +1,16 @@
 Name:           sparkleshare
-Version:        0.8.3
-Release:        1%{?dist}
+Version:        0.8.4
+Release:        2%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 Group:          Applications/Productivity
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
 Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
+#Makefile tries to write outside DESTDIR
+#https://github.com/hbons/SparkleShare/issues/658
+Patch0:         sparkleshare-0.8.4-desktop.patch
+
 
 BuildRequires:  mono-devel
 BuildRequires:  ndesk-dbus-devel
@@ -39,6 +43,7 @@ system and synchronized elsewhere.
 
 %prep
 %setup -q
+%patch0 -p1 -b .orig
 
 
 %build
@@ -93,7 +98,13 @@ fi
 
 
 %changelog
-* Wed Mar 14 2012 Nikos Roussos <nikos@autoverse.net> 0.8.3-1
+* Wed Mar 21 2012 Nikos Roussos <nikos@autoverse.net> 0.8.4-2
+- Patch to comment the misplaced update-desktop-database
+
+* Mon Mar 19 2012 Nikos Roussos <nikos@autoverse.net> 0.8.4-1
+- Update to 0.8.4
+
+* Mon Mar 12 2012 Nikos Roussos <nikos@autoverse.net> 0.8.3-1
 - Update to 0.8.3
 
 * Fri Mar 02 2012 Dan Horák <dan[at]danny.cz> 0.8.0-4
