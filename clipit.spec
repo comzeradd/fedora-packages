@@ -1,19 +1,12 @@
 Name:           clipit
-Version:        1.4.1
-Release:        5%{?dist}
+Version:        1.4.2
+Release:        1%{?dist}
 Summary:        A lightweight, fully featured GTK+ clipboard manager
 
 Group:          User Interface/Desktops
 License:        GPLv3+
 URL:            http://clipit.rspwn.com/
 Source0:        http://downloads.sourceforge.net/gtk%{name}/%{name}-%{version}.tar.gz
-# patch fixing German translation inconsistency
-# http://sf.net/tracker/?func=detail&aid=3367028&group_id=369179&atid=1538558
-Patch0:         clipit-1.4.1-de.po.patch
-# pacth fixing wrong gtk header inclusion
-# http://sf.net/tracker/?func=detail&aid=3495659&group_id=369179&atid=1538558
-# https://live.gnome.org/GnomeGoals/CleanupGTKIncludes
-Patch1:         clipit-1.4.1-glib.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: gtk2-devel
@@ -35,8 +28,6 @@ ClipIts main features are:
 
 %prep
 %setup -q
-%patch0 -p1 -b .orig
-%patch1 -p1 -b .orig
 
 
 %build
@@ -85,6 +76,9 @@ fi
 
 
 %changelog
+* Fri Apr 27 2012 Nikos Roussos <nikos@autoverse.net> 1.4.2-1
+- Update to 1.4.2
+
 * Wed Feb 29 2012 Nikos Roussos <nikos@autoverse.net> 1.4.1-5
 - Fix gtk+ inclusion bug, see patch1
 
