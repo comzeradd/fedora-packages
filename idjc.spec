@@ -1,6 +1,6 @@
 Name:           idjc
 Version:        0.8.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        DJ application for streaming audio
 
 Group:          Applications/Multimedia
@@ -8,6 +8,9 @@ License:        GPLv2+
 URL:            http://idjc.sourceforge.net
 Source0:        http://downloads.sourceforge.net/project/idjc/idjc/0.8/%{name}-%{version}.tar.gz
 Source1:        %{name}-README.Fedora
+#fix value error bug
+#http://sourceforge.net/tracker/?func=detail&atid=733855&aid=3531294&group_id=135773
+Patch0:         idjc-0.8.7-valueerror.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  pygtk2-devel
@@ -19,6 +22,8 @@ BuildRequires:  libsndfile-devel
 BuildRequires:  speex-devel
 BuildRequires:  flac-devel
 BuildRequires:  desktop-file-utils
+BuildRequires:  glib2-devel
+BuildRequires:  libshout-devel
 Requires:       python-mutagen
 Requires:       pulseaudio-module-jack
 
@@ -32,6 +37,7 @@ major free audio codecs.
 
 %prep
 %setup -q
+%patch0 -p1 -b .orig
 cp %{SOURCE1} README.Fedora
 
 
@@ -69,32 +75,32 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Mon Feb 13 2012 Nikos Roussos <nikos@autoverse.net> 0.8.7-1
+* Sat Jun 02 2012 Nikos Roussos <nikos@roussos.cc> 0.8.7-2
+- fix valueerror bug
+
+* Tue Jan 03 2012 Nikos Roussos <nikos@roussos.cc> 0.8.7-1
 - Update to 0.8.7
 
-* Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.6-5
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
-
-* Sun Dec 04 2011 Nikos Roussos <nikos@autoverse.net> 0.8.6-4
+* Sun Dec 04 2011 Nikos Roussos <nikos@roussos.cc> 0.8.6-4
 - Added README.Fedora for codecs
 - Changed category to Multimedia
 - Added AudioVideo category to desktop file
 
-* Mon Nov 28 2011 Nikos Roussos <nikos@autoverse.net> 0.8.6-3
+* Mon Nov 28 2011 Nikos Roussos <nikos@roussos.cc> 0.8.6-3
 - Added pulseaudio module dependency
 - Added html documentation
 
-* Tue Nov 22 2011 Nikos Roussos <nikos@autoverse.net> 0.8.6-2
+* Tue Nov 22 2011 Nikos Roussos <nikos@roussos.cc> 0.8.6-2
 - Fix license error
 
-* Thu Nov 17 2011 Nikos Roussos <nikos@autoverse.net> 0.8.6-1
+* Thu Nov 17 2011 Nikos Roussos <nikos@roussos.cc> 0.8.6-1
 - Update to 0.8.6
 
-* Mon May 08 2011 Nikos Roussos <nikos@autoverse.net> 0.8.5-1
+* Mon May 08 2011 Nikos Roussos <nikos@roussos.cc> 0.8.5-1
 - Update to 0.8.5
 
-* Mon Oct 25 2010 Nikos Roussos <nikos@autoverse.net> 0.8.3-2
+* Mon Oct 25 2010 Nikos Roussos <nikos@roussos.cc> 0.8.3-2
 - Add patch to fix pythondir bug on x86_64
 
-* Mon Oct 18 2010 Nikos Roussos <nikos@autoverse.net> 0.8.3-1
+* Mon Oct 18 2010 Nikos Roussos <nikos@roussos.cc> 0.8.3-1
 - Initial version of the package
