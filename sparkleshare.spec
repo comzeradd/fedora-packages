@@ -1,6 +1,6 @@
 Name:           sparkleshare
-Version:        0.8.4
-Release:        2%{?dist}
+Version:        0.9.0
+Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 Group:          Applications/Productivity
@@ -9,7 +9,7 @@ URL:            http://www.sparkleshare.org/
 Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
 #Makefile tries to write outside DESTDIR
 #https://github.com/hbons/SparkleShare/issues/658
-Patch0:         sparkleshare-0.8.4-desktop.patch
+#Patch0:         sparkleshare-0.8.4-desktop.patch
 
 
 BuildRequires:  mono-devel
@@ -24,6 +24,7 @@ BuildRequires:  nant
 BuildRequires:  webkit-sharp-devel
 BuildRequires:  nautilus-python-devel >= 1.1
 BuildRequires:  gettext
+BuildRequires:  gvfs-devel
 Requires:       git
 Requires:       yelp
 Requires:       nautilus-python >= 1.1
@@ -43,7 +44,7 @@ system and synchronized elsewhere.
 
 %prep
 %setup -q
-%patch0 -p1 -b .orig
+#%patch0 -p1 -b .orig
 
 
 %build
@@ -59,7 +60,8 @@ GMCS_FLAGS=-codepage:utf8 make
 make install DESTDIR=%{buildroot}
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}-invite-opener.desktop
-%find_lang %{name}
+#translations are disabled in this version
+#%find_lang %{name}
 
 
 %post
@@ -77,7 +79,9 @@ fi
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
-%files -f %{name}.lang
+#translations are disabled in this version
+#%files -f %{name}.lang
+%files
 %{_bindir}/%{name}
 %{_datadir}/nautilus-python/extensions/%{name}-nautilus3-extension*
 %defattr(0644,root,root,0755)
@@ -92,31 +96,34 @@ fi
 %{_datadir}/icons/hicolor/256x256/apps/folder-%{name}.png
 %{_datadir}/icons/hicolor/32x32/apps/folder-%{name}.png
 %{_datadir}/icons/hicolor/48x48/apps/folder-%{name}.png
-%{_datadir}/icons/hicolor/24x24/status/process-syncing-%{name}-i*.png
-%doc AUTHORS LICENSE NEWS
-
+%{_datadir}/icons/ubuntu-mono-dark/status/24/*
+%{_datadir}/icons/ubuntu-mono-light/status/24/*
+%doc legal/AUTHORS legal/LICENSE legal/TRADEMARK NEWS README.md
 
 
 %changelog
-* Wed Mar 21 2012 Nikos Roussos <nikos@autoverse.net> 0.8.4-2
+* Thu Jul 05 2012 Nikos Roussos <nikos@roussos.cc> 0.9.0-1
+- Update to 0.9.0
+
+* Wed Mar 21 2012 Nikos Roussos <nikos@roussos.cc> 0.8.4-2
 - Patch to comment the misplaced update-desktop-database
 
-* Mon Mar 19 2012 Nikos Roussos <nikos@autoverse.net> 0.8.4-1
+* Mon Mar 19 2012 Nikos Roussos <nikos@roussos.cc> 0.8.4-1
 - Update to 0.8.4
 
-* Mon Mar 12 2012 Nikos Roussos <nikos@autoverse.net> 0.8.3-1
+* Mon Mar 12 2012 Nikos Roussos <nikos@roussos.cc> 0.8.3-1
 - Update to 0.8.3
 
 * Fri Mar 02 2012 Dan Horák <dan[at]danny.cz> 0.8.0-4
 - set ExclusiveArch
 
-* Thu Mar 01 2012 Nikos Roussos <nikos@autoverse.net> 0.8.0-3
+* Thu Mar 01 2012 Nikos Roussos <nikos@roussos.cc> 0.8.0-3
 - added nautilus-python as dependency
 
-* Tue Feb 14 2012 Nikos Roussos <nikos@autoverse.net> 0.8.0-2
+* Tue Feb 14 2012 Nikos Roussos <nikos@roussos.cc> 0.8.0-2
 - gettext added as buildrequirement, permissions error fixes
 
-* Tue Feb 01 2012 Nikos Roussos <nikos@autoverse.net> 0.8.0-1
+* Tue Feb 01 2012 Nikos Roussos <nikos@roussos.cc> 0.8.0-1
 - Update to 0.8.0
 
 * Wed Jun 29 2011 fedora@alexhudson.com - 0.2.4-1
@@ -160,4 +167,3 @@ fi
 
 * Tue Aug 03 2010 Alex Hudson - 0.2.alpha1-1
 - Initial release of the 0.2alpha series of SparkleShare
-
