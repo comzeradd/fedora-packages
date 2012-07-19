@@ -1,6 +1,6 @@
 Name:           idjc
 Version:        0.8.7
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        DJ application for streaming audio
 
 Group:          Applications/Multimedia
@@ -75,6 +75,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.7-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Sat Jun 02 2012 Nikos Roussos <nikos@roussos.cc> 0.8.7-2
 - fix valueerror bug
 
