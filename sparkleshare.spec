@@ -1,6 +1,6 @@
 Name:           sparkleshare
 Version:        0.9.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 Group:          Applications/Productivity
@@ -102,6 +102,9 @@ fi
 
 
 %changelog
+* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Thu Jul 05 2012 Nikos Roussos <nikos@roussos.cc> 0.9.0-1
 - Update to 0.9.0
 
