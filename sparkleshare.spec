@@ -1,15 +1,12 @@
 Name:           sparkleshare
-Version:        0.9.0
-Release:        2%{?dist}
+Version:        0.9.1
+Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 Group:          Applications/Productivity
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
 Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
-#Makefile tries to write outside DESTDIR
-#https://github.com/hbons/SparkleShare/issues/658
-#Patch0:         sparkleshare-0.8.4-desktop.patch
 
 
 BuildRequires:  mono-devel
@@ -44,7 +41,6 @@ system and synchronized elsewhere.
 
 %prep
 %setup -q
-#%patch0 -p1 -b .orig
 
 
 %build
@@ -90,20 +86,20 @@ fi
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/%{name}-invite-opener.desktop
 #%{_mandir}/man1/%{name}.1.gz
-%{_datadir}/icons/hicolor/16x16/apps/folder-%{name}.png
-%{_datadir}/icons/hicolor/22x22/apps/folder-%{name}.png
-%{_datadir}/icons/hicolor/24x24/apps/folder-%{name}.png
-%{_datadir}/icons/hicolor/256x256/apps/folder-%{name}.png
-%{_datadir}/icons/hicolor/32x32/apps/folder-%{name}.png
-%{_datadir}/icons/hicolor/48x48/apps/folder-%{name}.png
+%{_datadir}/icons/hicolor/16x16/apps/*
+%{_datadir}/icons/hicolor/22x22/apps/*
+%{_datadir}/icons/hicolor/24x24/apps/*
+%{_datadir}/icons/hicolor/256x256/apps/*
+%{_datadir}/icons/hicolor/32x32/apps/*
+%{_datadir}/icons/hicolor/48x48/apps/*
 %{_datadir}/icons/ubuntu-mono-dark/status/24/*
 %{_datadir}/icons/ubuntu-mono-light/status/24/*
-%doc legal/AUTHORS legal/LICENSE legal/TRADEMARK NEWS README.md
+%doc legal/AUTHORS.txt legal/LICENSE.txt legal/TRADEMARK.txt NEWS README.md
 
 
 %changelog
-* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.0-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+* Tue Aug 28 2012 Nikos Roussos <nikos@roussos.cc> 0.9.1-1
+- Update to 0.9.1
 
 * Thu Jul 05 2012 Nikos Roussos <nikos@roussos.cc> 0.9.0-1
 - Update to 0.9.0
