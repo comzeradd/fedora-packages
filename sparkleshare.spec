@@ -1,12 +1,12 @@
 Name:           sparkleshare
-Version:        0.9.1
+Version:        0.9.2
 Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 Group:          Applications/Productivity
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
-Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
+Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-%{version}.tar.gz
 
 
 BuildRequires:  mono-devel
@@ -98,6 +98,9 @@ fi
 
 
 %changelog
+* Sun Sep 02 2012 Nikos Roussos <nikos@roussos.cc> 0.9.2-1
+- Update to 0.9.2
+
 * Tue Aug 28 2012 Nikos Roussos <nikos@roussos.cc> 0.9.1-1
 - Update to 0.9.1
 
