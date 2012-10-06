@@ -1,0 +1,6 @@
+IDJC Codecs support
+-------------------
+
+Due to the Fedora limitations on patents covering some popular formats [1], idjc Fedora package is restricted to support OGG, FLAC, SPEEX formats. Support of MP3, WMA is available at upstream sources
+
+[1] https://fedoraproject.org/wiki/Forbidden_items
