@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=iTALC
+GenericName=View and remote-control clients
+Comment=Intelligent Teaching And Learning with Computers
+Icon=/usr/share/icons/italc.png
+Exec=/usr/bin/italc
+Type=Application
+Terminal=false
+Categories=Education;
