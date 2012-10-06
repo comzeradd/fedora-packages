@@ -1,0 +1,11 @@
+--- sparklesahre-0.8.4/SparkleShare/Makefile.in.orig	2012-03-21 12:33:16.517291153 +0200
++++ sparklesahre-0.8.4/SparkleShare/Makefile.in	2012-03-21 12:33:33.557392218 +0200
+@@ -786,7 +786,7 @@
+ 	fi;
+ 
+ install-data-hook:
+-	update-desktop-database $(datadir)/applications
++	#update-desktop-database $(datadir)/applications
+ 	echo "Installed protocol handler sparkleshare://"
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
