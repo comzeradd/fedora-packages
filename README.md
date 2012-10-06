@@ -10,7 +10,6 @@ spec files and patches for packages I maintain for the [Fedora Project][fedora].
 
 license
 -------
-All spec files are licensed under the [Fedora Project Contributor Agreement][FPCA]. For more
-information, read the file ``COPYING``.
+All spec files are licensed under the [Fedora Project Contributor Agreement][FPCA].
 
 [FPCA]: https://fedoraproject.org/wiki/Legal:Fedora_Project_Contributor_Agreement
