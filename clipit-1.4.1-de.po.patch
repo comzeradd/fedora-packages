@@ -1,0 +1,11 @@
+--- clipit-1.4.1/po/de.po.orig	2011-07-14 11:43:41.724836682 +0300
++++ clipit-1.4.1/po/de.po	2011-07-14 11:43:50.402889212 +0300
+@@ -227,7 +227,7 @@
+ 
+ #: ../src/preferences.c:582
+ msgid "Hotkeys"
+-msgstr "<b>Tastenkombinationen</b>"
++msgstr "Tastenkombinationen"
+ 
+ #: ../src/preferences.c:590
+ msgid "<b>Hotkeys</b>"
