@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Ninja-IDE
+GenericName=Ninja IDE for Python development
+Exec=ninja-ide
+Icon=ninja-ide
+Categories=Development;IDE;
+Terminal=false
