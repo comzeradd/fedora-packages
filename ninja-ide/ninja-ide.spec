@@ -55,6 +55,7 @@ desktop-file-install \
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_mandir}/man1/%{name}.1.gz
+%attr(755,root,root) %{python_sitelib}/ninja_ide/dependencies/pep8mod.py
 
 
 %changelog
