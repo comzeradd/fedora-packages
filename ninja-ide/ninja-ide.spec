@@ -13,6 +13,7 @@ Source2:    %{name}.1.gz
 BuildRequires:  desktop-file-utils
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
+BuildRequires:  python-inotify
 BuildRequires:  PyQt4-devel
 Requires:       PyQt4
 Requires:       python-inotify
@@ -44,6 +45,10 @@ cp %{SOURCE2} %{buildroot}%{_mandir}/man1/%{name}.1.gz
 desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{SOURCE1}
+
+
+%check
+%{__python} setup.py test
 
 
 %files
