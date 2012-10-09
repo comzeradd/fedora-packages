@@ -1,6 +1,6 @@
 Name:       ninja-ide
 Version:    2.1.1
-Release:    1
+Release:    2%{?dist}
 Summary:    Ninja IDE for Python development
 
 Group:      Development/Tools
@@ -8,9 +8,10 @@ License:    GPLv3
 URL:        http://www.ninja-ide.org/
 Source0:    https://github.com/downloads/%{name}/%{name}/%{name}-v%{version}.zip
 Source1:    %{name}.desktop
+Source2:    %{name}.1.gz
 
 BuildRequires:  desktop-file-utils
-BuildRequires:  python-devel
+BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  PyQt4-devel
 Requires:       PyQt4
@@ -37,6 +38,8 @@ enjoyable.
 
 %install
 install -Dm 755 icon.png %{buildroot}/%{_datadir}/pixmaps/%{name}.png
+mkdir -p %{buildroot}%{_mandir}/man1
+cp %{SOURCE2} %{buildroot}%{_mandir}/man1/%{name}.1.gz
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
 desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
@@ -44,15 +47,19 @@ desktop-file-install \
 
 
 %files
-%defattr(-,root,root,-)
+%doc COPYING README.md
 %{python_sitelib}/ninja_ide/
 %{python_sitelib}/ninja_tests/
 %{python_sitelib}/NINJA_IDE-2.1.1-py2.7.egg-info/
 %{_datadir}/pixmaps/%{name}.png
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%doc COPYING README.md
+%{_mandir}/man1/%{name}.1.gz
+
 
 %changelog
+* Tue Oct 09 2012 Nikos Roussos <nikos@roussos.cc> 2.1.1-2
+- Minor fixes and man page inclusion
+
 * Mon Oct 08 2012 Nikos Roussos <nikos@roussos.cc> 2.1.1-1
 - Initial package for Fedora
