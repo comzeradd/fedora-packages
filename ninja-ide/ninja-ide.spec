@@ -1,6 +1,6 @@
 Name:       ninja-ide
 Version:    2.1.1
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Ninja IDE for Python development
 
 Group:      Development/Tools
@@ -45,6 +45,7 @@ cp %{SOURCE2} %{buildroot}%{_mandir}/man1/%{name}.1.gz
 desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{SOURCE1}
+find %{buildroot} -name 'pep8mod.py' | xargs chmod 0755
 
 
 %check
@@ -60,10 +61,12 @@ desktop-file-install \
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_mandir}/man1/%{name}.1.gz
-%attr(755,root,root) %{python_sitelib}/ninja_ide/dependencies/pep8mod.py
 
 
 %changelog
+* Wed Oct 10 2012 Nikos Roussos <nikos@roussos.cc> 2.1.1-3
+- Fix perm error on a py script
+
 * Tue Oct 09 2012 Nikos Roussos <nikos@roussos.cc> 2.1.1-2
 - Minor fixes and man page inclusion
 
