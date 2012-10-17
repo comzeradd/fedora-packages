@@ -1,6 +1,6 @@
 Name:       ninja-ide
 Version:    2.1.1
-Release:    3%{?dist}
+Release:    4%{?dist}
 Summary:    Ninja IDE for Python development
 
 License:    GPLv3
@@ -16,6 +16,7 @@ BuildRequires:  python-inotify
 BuildRequires:  PyQt4-devel
 Requires:       PyQt4
 Requires:       python-inotify
+Requires:       python-setuptools
 BuildArch:      noarch
 
 
@@ -63,6 +64,9 @@ find %{buildroot} -name 'pep8mod.py' | xargs chmod 0755
 
 
 %changelog
+* Wed Oct 17 2012 Nikos Roussos <comzeradd@fedoraproject.org> 2.1.1-4
+- added missing dependency
+
 * Wed Oct 10 2012 Nikos Roussos <comzeradd@fedoraproject.org> 2.1.1-3
 - Fix perm error on a py script
 
