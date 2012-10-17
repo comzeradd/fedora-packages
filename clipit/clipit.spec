@@ -3,11 +3,9 @@ Version:        1.4.2
 Release:        2%{?dist}
 Summary:        A lightweight, fully featured GTK+ clipboard manager
 
-Group:          User Interface/Desktops
 License:        GPLv3+
 URL:            http://clipit.rspwn.com/
 Source0:        http://downloads.sourceforge.net/gtk%{name}/%{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: gtk2-devel
 BuildRequires: desktop-file-utils
@@ -36,7 +34,6 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
 %find_lang %{name}
 desktop-file-install --delete-original \
@@ -46,10 +43,6 @@ desktop-file-install --delete-original \
 desktop-file-install --delete-original \
     --dir %{buildroot}%{_sysconfdir}/xdg/autostart \
     %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-startup.desktop
-
-
-%clean
-rm -rf %{buildroot}
 
 
 %post
@@ -66,7 +59,6 @@ fi
 
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README NEWS
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1.*
@@ -79,20 +71,20 @@ fi
 * Wed Jul 18 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
-* Fri Apr 27 2012 Nikos Roussos <nikos@autoverse.net> 1.4.2-1
+* Fri Apr 27 2012 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.2-1
 - Update to 1.4.2
 
-* Wed Feb 29 2012 Nikos Roussos <nikos@autoverse.net> 1.4.1-5
+* Wed Feb 29 2012 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-5
 - Fix gtk+ inclusion bug, see patch1
 
 * Thu Jan 12 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.1-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
-* Thu Jul 14 2011 Nikos Roussos <nikos@autoverse.net> 1.4.1-3
+* Thu Jul 14 2011 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-3
 - Fixed dependency missing, de translation bug, desktop icon bug
 
-* Fri Jul 01 2011 Nikos Roussos <nikos@autoverse.net> 1.4.1-2
+* Fri Jul 01 2011 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-2
 - Fixed config warning and more spec errors
 
-* Wed Jun 01 2011 Nikos Roussos <nikos@autoverse.net> 1.4.1-1
+* Wed Jun 01 2011 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-1
 - Initial Fedora RPM

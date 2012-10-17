@@ -3,7 +3,6 @@ Version:    2.0.0
 Release:    1%{?dist}
 Summary:    Intelligent teaching and learning with computers
 
-Group:      System Environment/Daemons
 License:    GPLv2+
 URL:        http://italc.sourceforge.net/
 Source0:    http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
@@ -68,17 +67,14 @@ install -Dm644 ima/data/italc.png %buildroot/%{_datadir}/pixmaps/italc.xpm
 
 
 %files
-%defattr(-,root,root,-)
 %doc COPYING README AUTHORS ChangeLog
 
 %files client
-%defattr(-,root,root,-)
 %{_bindir}/ica
 %{_bindir}/italc_auth_helper
 %{_libdir}/libItalcCore.so
 
 %files master
-%defattr(-,root,root,-)
 %{_bindir}/italc
 %{_bindir}/imc
 %{_datadir}/applications/%{name}.desktop
@@ -87,9 +83,9 @@ install -Dm644 ima/data/italc.png %buildroot/%{_datadir}/pixmaps/italc.xpm
 
 
 %changelog
-* Wed Mar 28 2012 Nikos Roussos <nikos@autoverse.net> - 2.0.0-1
+* Wed Mar 28 2012 Nikos Roussos <comzeradd@fedoraproject.org> - 2.0.0-1
 - Update to version 2
 
-* Tue Jun 28 2011 Nikos Roussos <nikos@autoverse.net> - 1.0.13-1
+* Tue Jun 28 2011 Nikos Roussos <comzeradd@fedoraproject.org> - 1.0.13-1
 - Initial build
 

@@ -3,14 +3,12 @@ Version:        1.0.0
 Release:        10%{?dist}
 Summary:        Program to display HEALPix-based skymaps in FITS files
 
-Group:          Amusements/Graphics
 License:        Public Domain
 URL:            http://lambda.gsfc.nasa.gov/toolbox/tb_skyviewer_ov.cfm
 Source0:        http://lambda.gsfc.nasa.gov/toolbox/skyviewer/%{name}-%{version}.tar.gz
 Source1:        skyviewer.desktop
 # Will be included in the next release
 Source2:        skyviewer-license.txt
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cfitsio-devel
 BuildRequires:  chealpix-devel
@@ -39,8 +37,6 @@ make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
 # Binary
 install -d $RPM_BUILD_ROOT%{_bindir}
 install -pm 0755 skyviewer $RPM_BUILD_ROOT%{_bindir}
@@ -55,10 +51,6 @@ desktop-file-install --vendor='' %{SOURCE1} \
         --dir=$RPM_BUILD_ROOT%{_datadir}/applications
 
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %pre
 /usr/bin/update-desktop-database >/dev/null 2>&1 || :
 
@@ -68,7 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/skyviewer
 %{_datadir}/pixmaps/skyviewer.png
 %{_datadir}/applications/skyviewer.desktop

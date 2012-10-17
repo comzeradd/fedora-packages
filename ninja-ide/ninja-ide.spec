@@ -3,7 +3,6 @@ Version:    2.1.1
 Release:    3%{?dist}
 Summary:    Ninja IDE for Python development
 
-Group:      Development/Tools
 License:    GPLv3
 URL:        http://www.ninja-ide.org/
 Source0:    https://github.com/downloads/%{name}/%{name}/%{name}-v%{version}.zip
@@ -64,11 +63,11 @@ find %{buildroot} -name 'pep8mod.py' | xargs chmod 0755
 
 
 %changelog
-* Wed Oct 10 2012 Nikos Roussos <nikos@roussos.cc> 2.1.1-3
+* Wed Oct 10 2012 Nikos Roussos <comzeradd@fedoraproject.org> 2.1.1-3
 - Fix perm error on a py script
 
-* Tue Oct 09 2012 Nikos Roussos <nikos@roussos.cc> 2.1.1-2
+* Tue Oct 09 2012 Nikos Roussos <comzeradd@fedoraproject.org> 2.1.1-2
 - Minor fixes and man page inclusion
 
-* Mon Oct 08 2012 Nikos Roussos <nikos@roussos.cc> 2.1.1-1
+* Mon Oct 08 2012 Nikos Roussos <comzeradd@fedoraproject.org> 2.1.1-1
 - Initial package for Fedora

@@ -3,11 +3,9 @@ Version:        0.9.3
 Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
-Group:          Applications/Productivity
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
 Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
-
 
 BuildRequires:  mono-devel
 BuildRequires:  ndesk-dbus-devel
@@ -80,7 +78,6 @@ fi
 %files
 %{_bindir}/%{name}
 %{_datadir}/nautilus-python/extensions/%{name}-nautilus3-extension*
-%defattr(0644,root,root,0755)
 %{_libdir}/%{name}/
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
@@ -98,37 +95,37 @@ fi
 
 
 %changelog
-* Sun Sep 30 2012 Nikos Roussos <nikos@roussos.cc> 0.9.3-1
+* Sun Sep 30 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.3-1
 - Update to 0.9.3
 
-* Sun Sep 02 2012 Nikos Roussos <nikos@roussos.cc> 0.9.2-1
+* Sun Sep 02 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.2-1
 - Update to 0.9.2
 
-* Tue Aug 28 2012 Nikos Roussos <nikos@roussos.cc> 0.9.1-1
+* Tue Aug 28 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.1-1
 - Update to 0.9.1
 
-* Thu Jul 05 2012 Nikos Roussos <nikos@roussos.cc> 0.9.0-1
+* Thu Jul 05 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.0-1
 - Update to 0.9.0
 
-* Wed Mar 21 2012 Nikos Roussos <nikos@roussos.cc> 0.8.4-2
+* Wed Mar 21 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.4-2
 - Patch to comment the misplaced update-desktop-database
 
-* Mon Mar 19 2012 Nikos Roussos <nikos@roussos.cc> 0.8.4-1
+* Mon Mar 19 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.4-1
 - Update to 0.8.4
 
-* Mon Mar 12 2012 Nikos Roussos <nikos@roussos.cc> 0.8.3-1
+* Mon Mar 12 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.3-1
 - Update to 0.8.3
 
 * Fri Mar 02 2012 Dan Horák <dan[at]danny.cz> 0.8.0-4
 - set ExclusiveArch
 
-* Thu Mar 01 2012 Nikos Roussos <nikos@roussos.cc> 0.8.0-3
+* Thu Mar 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.0-3
 - added nautilus-python as dependency
 
-* Tue Feb 14 2012 Nikos Roussos <nikos@roussos.cc> 0.8.0-2
+* Tue Feb 14 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.0-2
 - gettext added as buildrequirement, permissions error fixes
 
-* Tue Feb 01 2012 Nikos Roussos <nikos@roussos.cc> 0.8.0-1
+* Tue Feb 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.0-1
 - Update to 0.8.0
 
 * Wed Jun 29 2011 fedora@alexhudson.com - 0.2.4-1
