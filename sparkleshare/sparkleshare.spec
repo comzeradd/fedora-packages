@@ -1,5 +1,5 @@
 Name:           sparkleshare
-Version:        0.9.3
+Version:        0.9.4
 Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
@@ -17,12 +17,10 @@ BuildRequires:  intltool
 #BuildRequires:  gnome-doc-utils
 BuildRequires:  nant
 BuildRequires:  webkit-sharp-devel
-BuildRequires:  nautilus-python-devel >= 1.1
 BuildRequires:  gettext
 BuildRequires:  gvfs-devel
 Requires:       git
 Requires:       yelp
-Requires:       nautilus-python >= 1.1
 
 ExclusiveArch:  %{mono_arches}
 
@@ -77,24 +75,26 @@ fi
 #%files -f %{name}.lang
 %files
 %{_bindir}/%{name}
-%{_datadir}/nautilus-python/extensions/%{name}-nautilus3-extension*
 %{_libdir}/%{name}/
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/%{name}-invite-opener.desktop
-#%{_mandir}/man1/%{name}.1.gz
-%{_datadir}/icons/hicolor/16x16/apps/*
-%{_datadir}/icons/hicolor/22x22/apps/*
-%{_datadir}/icons/hicolor/24x24/apps/*
-%{_datadir}/icons/hicolor/256x256/apps/*
-%{_datadir}/icons/hicolor/32x32/apps/*
-%{_datadir}/icons/hicolor/48x48/apps/*
+%{_datadir}/icons/gnome/scalable/apps/%{name}-symbolic.svg
+%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+%{_datadir}/icons/hicolor/22x22/apps/%{name}.png
+%{_datadir}/icons/hicolor/24x24/apps/%{name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 %{_datadir}/icons/ubuntu-mono-dark/status/24/*
 %{_datadir}/icons/ubuntu-mono-light/status/24/*
 %doc legal/Authors.txt legal/License.txt legal/Trademark.txt News.txt README.md
 
 
 %changelog
+* Sat Oct 20 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.4-1
+- Update to 0.9.4
+
 * Sun Sep 30 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.3-1
 - Update to 0.9.3
 
