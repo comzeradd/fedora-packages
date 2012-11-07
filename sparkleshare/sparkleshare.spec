@@ -1,5 +1,5 @@
 Name:           sparkleshare
-Version:        0.9.4
+Version:        0.9.6
 Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
@@ -92,6 +92,9 @@ fi
 
 
 %changelog
+* Wed Nov 07 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.6-1
+- Update to 0.9.6
+
 * Sat Oct 20 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.4-1
 - Update to 0.9.4
 
