@@ -19,7 +19,7 @@ BuildRequires:  nant
 BuildRequires:  webkit-sharp-devel
 BuildRequires:  gettext
 BuildRequires:  gvfs-devel
-Requires:       git
+Requires:       git >= 1.7.12
 Requires:       yelp
 
 ExclusiveArch:  %{mono_arches}
