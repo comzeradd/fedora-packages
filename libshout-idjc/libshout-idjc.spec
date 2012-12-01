@@ -73,7 +73,7 @@ rm -rf %{buildroot}/%{_docdir}
 
 
 %changelog
-* Sat Dec 01 2012 Nikos Roussos <comzeradd@fedoraproject.org>
+* Sat Dec 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> - 2.3.0-1
 - Initial RPM release for this fork
 
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.2.2-7
