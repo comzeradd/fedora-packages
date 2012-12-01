@@ -1,15 +1,12 @@
 Name:           idjc
-Version:        0.8.7
-Release:        3%{?dist}
+Version:        0.8.8
+Release:        1%{?dist}
 Summary:        DJ application for streaming audio
 
 License:        GPLv2+
 URL:            http://idjc.sourceforge.net
 Source0:        http://downloads.sourceforge.net/project/idjc/idjc/0.8/%{name}-%{version}.tar.gz
 Source1:        %{name}-README.Fedora
-#fix value error bug
-#http://sourceforge.net/tracker/?func=detail&atid=733855&aid=3531294&group_id=135773
-Patch0:         idjc-0.8.7-valueerror.patch
 
 BuildRequires:  pygtk2-devel
 BuildRequires:  python-mutagen
@@ -21,7 +18,7 @@ BuildRequires:  speex-devel
 BuildRequires:  flac-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
-BuildRequires:  libshout-devel
+BuildRequires:  libshout-idjc-devel
 Requires:       python-mutagen
 Requires:       pulseaudio-module-jack
 
@@ -35,17 +32,15 @@ major free audio codecs.
 
 %prep
 %setup -q
-%patch0 -p1 -b .orig
 cp %{SOURCE1} README.Fedora
 
 
 %build
-%configure
+%configure --disable-twolame
 make %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
 %find_lang %{name}
 desktop-file-install --delete-original \
@@ -68,6 +63,9 @@ find %{buildroot} -name 'mutagentagger.py' | xargs chmod 0755
 
 
 %changelog
+* Sat Dec 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.8-1
+- Update to 0.8.8
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.8.7-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
