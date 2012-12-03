@@ -7,6 +7,10 @@ License:        GPLv2+
 URL:            http://idjc.sourceforge.net
 Source0:        http://downloads.sourceforge.net/project/idjc/idjc/0.8/%{name}-%{version}.tar.gz
 Source1:        %{name}-README.Fedora
+#corrects avcodecdecode build errors
+#https://sourceforge.net/tracker/?func=detail&aid=3591430&group_id=135773&atid=733855
+Patch0:         idjc-0.8.8-avcodecdecode-build-error.patch
+
 
 BuildRequires:  pygtk2-devel
 BuildRequires:  python-mutagen
@@ -19,6 +23,11 @@ BuildRequires:  flac-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  glib2-devel
 BuildRequires:  libshout-idjc-devel
+BuildRequires:  libmad-devel
+BuildRequires:  lame-devel
+BuildRequires:  libmpg123-devel
+BuildRequires:  twolame-devel
+BuildRequires:  ffmpeg-devel
 Requires:       python-mutagen
 Requires:       pulseaudio-module-jack
 
@@ -33,10 +42,11 @@ major free audio codecs.
 %prep
 %setup -q
 cp %{SOURCE1} README.Fedora
+%patch0 -p1 -b .orig
 
 
 %build
-%configure --disable-twolame
+%configure
 make %{?_smp_mflags}
 
 
@@ -48,14 +58,13 @@ desktop-file-install --delete-original \
     --add-category="AudioVideo" \
     --dir %{buildroot}%{_datadir}/applications \
     %{buildroot}%{_datadir}/applications/%{name}.desktop
-find %{buildroot} -name 'mutagentagger.py' | xargs chmod 0755
 
 
 %files -f %{name}.lang
 %{_bindir}/%{name}*
 %{python_sitelib}/%{name}*
+%{_libdir}/%{name}*
 %{_datadir}/applications/%{name}.desktop
-%{_prefix}/libexec/%{name}*
 %{_datadir}/%{name}/
 %{_mandir}/man1/%{name}*
 %{_datadir}/pixmaps/%{name}.png
