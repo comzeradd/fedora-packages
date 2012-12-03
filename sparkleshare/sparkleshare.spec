@@ -1,11 +1,14 @@
 Name:           sparkleshare
-Version:        0.9.8
+Version:        0.9.9
 Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
 Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
+#fix small tray icon for gnome 3.6
+#https://github.com/hbons/SparkleShare/issues/957
+Patch0:         sparkleshare-0.9.9-trayicon.patch
 
 BuildRequires:  mono-devel
 BuildRequires:  ndesk-dbus-devel
@@ -37,6 +40,7 @@ system and synchronized elsewhere.
 
 %prep
 %setup -q
+%patch0 -p1 -b .orig
 
 
 %build
@@ -92,6 +96,9 @@ fi
 
 
 %changelog
+* Mon Dec 03 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.9-1
+- Update to 0.9.9
+
 * Tue Nov 20 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.9.8-1
 - Update to 0.9.8
 

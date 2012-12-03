@@ -1,0 +1,19 @@
+--- sparkleshare-0.9.9/SparkleShare/Linux/SparkleStatusIcon.cs.orig	2012-12-03 22:06:24.612562435 +0200
++++ sparkleshare-0.9.9/SparkleShare/Linux/SparkleStatusIcon.cs	2012-12-03 22:07:20.857353509 +0200
+@@ -38,11 +38,11 @@
+         #else
+         private StatusIcon status_icon;
+ 
+-        private Gdk.Pixbuf syncing_idle_image  = SparkleUIHelpers.GetIcon ("sparkleshare", 24);
+-        private Gdk.Pixbuf syncing_up_image    = SparkleUIHelpers.GetIcon ("process-syncing-up", 24);
+-        private Gdk.Pixbuf syncing_down_image  = SparkleUIHelpers.GetIcon ("process-syncing-down", 24);
+-        private Gdk.Pixbuf syncing_image       = SparkleUIHelpers.GetIcon ("process-syncing", 24);
+-        private Gdk.Pixbuf syncing_error_image = SparkleUIHelpers.GetIcon ("process-syncing-error", 24);
++        private Gdk.Pixbuf syncing_idle_image  = SparkleUIHelpers.GetIcon ("sparkleshare", 48);
++        private Gdk.Pixbuf syncing_up_image    = SparkleUIHelpers.GetIcon ("sparkleshare", 48);
++        private Gdk.Pixbuf syncing_down_image  = SparkleUIHelpers.GetIcon ("sparkleshare", 48);
++        private Gdk.Pixbuf syncing_image       = SparkleUIHelpers.GetIcon ("sparkleshare", 48);
++        private Gdk.Pixbuf syncing_error_image = SparkleUIHelpers.GetIcon ("sparkleshare", 48);
+         #endif
+ 
+ 
