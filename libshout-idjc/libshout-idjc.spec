@@ -9,6 +9,9 @@ Source:         http://downloads.sourceforge.net/project/idjc/%{name}/%{name}-%{
 #wrong FSF address on COPYING
 #https://sourceforge.net/tracker/?func=detail&aid=3591617&group_id=135773&atid=733855
 Patch0:         libshout-idjc-2.3.0-copyingfsf.patch
+#Shared library calls exit
+#https://sourceforge.net/tracker/?func=detail&atid=733855&aid=3591623&group_id=135773
+Patch1:         libshout-idjc-2.3.0-shlib-calls-exit.patch
 
 BuildRequires:  libogg-devel
 BuildRequires:  libvorbis-devel
@@ -16,13 +19,13 @@ BuildRequires:  libtheora-devel
 BuildRequires:  speex-devel
 
 %description
-libshout is a library for communicating with and sending data to an icecast
+The libshout is a library for communicating with and sending data to an icecast
 server.  It handles the socket connection, the timing of the data, and prevents
 most bad data from getting to the icecast server. libshout-idjc is a modified
 version of libshout library with extra functionality needed by idjc.
 
 %package        devel
-Summary:        static libraries and header files for %{name} development.
+Summary:        static libraries and header files for %{name} development
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 
@@ -40,6 +43,7 @@ if you want to develop applications using libshout-idjc.
 %prep
 %setup -q
 %patch0 -p1 -b .orig
+%patch1 -p1 -b .orig
 
 
 %build
