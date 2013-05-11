@@ -1,17 +1,12 @@
 Name:           libshout-idjc
-Version:        2.3.0
+Version:        2.3.1
 Release:        1%{?dist}
 Summary:        Icecast source streaming library modified for IDJC
 
 License:        LGPLv2+
 URL:            http://idjc.sourceforge.net/
 Source:         http://downloads.sourceforge.net/project/idjc/%{name}/%{name}-%{version}.tar.gz
-#wrong FSF address on COPYING
-#https://sourceforge.net/tracker/?func=detail&aid=3591617&group_id=135773&atid=733855
-Patch0:         libshout-idjc-2.3.0-copyingfsf.patch
-#Shared library calls exit
-#https://sourceforge.net/tracker/?func=detail&atid=733855&aid=3591623&group_id=135773
-Patch1:         libshout-idjc-2.3.0-shlib-calls-exit.patch
+
 
 BuildRequires:  libogg-devel
 BuildRequires:  libvorbis-devel
@@ -42,8 +37,6 @@ if you want to develop applications using libshout-idjc.
 
 %prep
 %setup -q
-%patch0 -p1 -b .orig
-%patch1 -p1 -b .orig
 
 
 %build
@@ -77,6 +70,9 @@ rm -rf %{buildroot}/%{_docdir}
 
 
 %changelog
+* Sat May 11 2013 Nikos Roussos <comzeradd@fedoraproject.org> - 2.3.1-1
+- Update to 2.3.1
+
 * Sat Dec 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> - 2.3.0-1
 - Initial RPM release for this fork
 
