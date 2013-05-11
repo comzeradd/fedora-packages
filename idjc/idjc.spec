@@ -1,5 +1,5 @@
 Name:           idjc
-Version:        0.8.8
+Version:        0.8.9
 Release:        1%{?dist}
 Summary:        DJ application for streaming audio
 
@@ -7,9 +7,6 @@ License:        GPLv2+
 URL:            http://idjc.sourceforge.net
 Source0:        http://downloads.sourceforge.net/project/idjc/idjc/0.8/%{name}-%{version}.tar.gz
 Source1:        %{name}-README.Fedora
-#corrects avcodecdecode build errors
-#https://sourceforge.net/tracker/?func=detail&aid=3591430&group_id=135773&atid=733855
-Patch0:         idjc-0.8.8-avcodecdecode-build-error.patch
 
 
 BuildRequires:  pygtk2-devel
@@ -28,6 +25,7 @@ BuildRequires:  lame-devel
 BuildRequires:  libmpg123-devel
 BuildRequires:  twolame-devel
 BuildRequires:  ffmpeg-devel
+BuildRequires:  opus-devel
 Requires:       python-mutagen
 Requires:       pulseaudio-module-jack
 
@@ -42,7 +40,6 @@ major free audio codecs.
 %prep
 %setup -q
 cp %{SOURCE1} README.Fedora
-%patch0 -p1 -b .orig
 
 
 %build
@@ -72,6 +69,9 @@ desktop-file-install --delete-original \
 
 
 %changelog
+* Sat May 11 2013 Nikos Roussos <comzeradd@fedoraproject.org> - 0.8.9-1
+- Update to 0.8.9
+
 * Sat Dec 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.8-1
 - Update to 0.8.8
 
@@ -99,7 +99,7 @@ desktop-file-install --delete-original \
 * Thu Nov 17 2011 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.6-1
 - Update to 0.8.6
 
-* Mon May 08 2011 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.5-1
+* Sun May 08 2011 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.5-1
 - Update to 0.8.5
 
 * Mon Oct 25 2010 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.3-2
