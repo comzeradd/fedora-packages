@@ -1,14 +1,11 @@
 Name:           sparkleshare
-Version:        1.0.0
+Version:        1.1.0
 Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
-Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}.tar.gz
-#fix small tray icon for gnome 3.6
-#https://github.com/hbons/SparkleShare/issues/957
-Patch0:         sparkleshare-0.9.9-trayicon.patch
+Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}-tar.gz
 
 BuildRequires:  mono-devel
 BuildRequires:  ndesk-dbus-devel
@@ -16,8 +13,6 @@ BuildRequires:  ndesk-dbus-glib-devel
 BuildRequires:  notify-sharp-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
-#Help files removed on this version
-#BuildRequires:  gnome-doc-utils
 BuildRequires:  nant
 BuildRequires:  webkit-sharp-devel
 BuildRequires:  gettext
@@ -40,14 +35,9 @@ system and synchronized elsewhere.
 
 %prep
 %setup -q
-%patch0 -p1 -b .orig
 
 
 %build
-#disable user help because of a bug
-#https://github.com/hbons/SparkleShare/issues/557
-#%configure --prefix=/usr --disable-user-help
-#Help files removed on this version
 %configure --prefix=/usr
 GMCS_FLAGS=-codepage:utf8 make
 
@@ -56,8 +46,6 @@ GMCS_FLAGS=-codepage:utf8 make
 make install DESTDIR=%{buildroot}
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}-invite-opener.desktop
-#translations are disabled in this version
-#%find_lang %{name}
 
 
 %post
@@ -75,8 +63,6 @@ fi
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
-#translations are disabled in this version
-#%files -f %{name}.lang
 %files
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
@@ -87,15 +73,23 @@ fi
 %{_datadir}/icons/hicolor/16x16/apps/%{name}.png
 %{_datadir}/icons/hicolor/22x22/apps/%{name}.png
 %{_datadir}/icons/hicolor/24x24/apps/%{name}.png
-%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%{_datadir}/icons/hicolor/24x24/status/*
+%{_datadir}/icons/hicolor/48x48/status/*
 %{_datadir}/icons/ubuntu-mono-dark/status/24/*
 %{_datadir}/icons/ubuntu-mono-light/status/24/*
 %doc legal/Authors.txt legal/License.txt legal/Trademark.txt News.txt README.md
 
 
 %changelog
+* Sun May 26 2013 Nikos Roussos <comzeradd@fedoraproject.org> 1.1.0-1
+- Update to 1.1.0
+
+* Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Mon Dec 10 2012 Nikos Roussos <comzeradd@fedoraproject.org> 1.0.0-1
 - Update to 1.0.9
 
@@ -141,7 +135,7 @@ fi
 * Tue Feb 14 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.0-2
 - gettext added as buildrequirement, permissions error fixes
 
-* Tue Feb 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.0-1
+* Wed Feb 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.0-1
 - Update to 0.8.0
 
 * Wed Jun 29 2011 fedora@alexhudson.com - 0.2.4-1
