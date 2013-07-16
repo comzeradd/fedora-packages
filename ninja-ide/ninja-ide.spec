@@ -1,11 +1,11 @@
 Name:       ninja-ide
-Version:    2.1.1
-Release:    4%{?dist}
+Version:    2.3
+Release:    1%{?dist}
 Summary:    Ninja IDE for Python development
 
 License:    GPLv3
 URL:        http://www.ninja-ide.org/
-Source0:    https://github.com/downloads/%{name}/%{name}/%{name}-v%{version}.zip
+Source0:    https://github.com/downloads/%{name}/%{name}/%{name}-%{version}.zip
 Source1:    %{name}.desktop
 Source2:    %{name}.1.gz
 
@@ -30,7 +30,7 @@ enjoyable.
 
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 
 %build
@@ -56,7 +56,7 @@ find %{buildroot} -name 'pep8mod.py' | xargs chmod 0755
 %doc COPYING README.md
 %{python_sitelib}/ninja_ide/
 %{python_sitelib}/ninja_tests/
-%{python_sitelib}/NINJA_IDE-2.1.1-py2.7.egg-info/
+%{python_sitelib}/NINJA_IDE-2.3-py2.7.egg-info/
 %{_datadir}/pixmaps/%{name}.png
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
@@ -64,6 +64,12 @@ find %{buildroot} -name 'pep8mod.py' | xargs chmod 0755
 
 
 %changelog
+* Fri Jul 12 2013 Nikos Roussos <comzeradd@fedoraproject.org> - 2.3-1
+- Update to 2.3
+
+* Sat May 11 2013 Nikos Roussos <comzeradd@fedoraproject.org> - 2.2-1
+- Update to 2.2
+
 * Wed Oct 17 2012 Nikos Roussos <comzeradd@fedoraproject.org> 2.1.1-4
 - added missing dependency
 
