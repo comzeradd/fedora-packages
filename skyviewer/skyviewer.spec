@@ -1,20 +1,24 @@
 Name:           skyviewer
 Version:        1.0.0
-Release:        10%{?dist}
+Release:        13%{?dist}
 Summary:        Program to display HEALPix-based skymaps in FITS files
 
+Group:          Amusements/Graphics
 License:        Public Domain
 URL:            http://lambda.gsfc.nasa.gov/toolbox/tb_skyviewer_ov.cfm
 Source0:        http://lambda.gsfc.nasa.gov/toolbox/skyviewer/%{name}-%{version}.tar.gz
 Source1:        skyviewer.desktop
 # Will be included in the next release
 Source2:        skyviewer-license.txt
+Patch0:		skyviewer-1.0.0-libGLU.patch
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cfitsio-devel
 BuildRequires:  chealpix-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  libQGLViewer-devel
 BuildRequires:  qt4-devel
+BuildRequires:	mesa-libGLU-devel
 
 %description
 SkyViewer is an OpenGL based program to display HEALPix-based skymaps,
@@ -26,6 +30,7 @@ assuming you have a strong enough graphics card.
 
 %prep
 %setup -q
+%patch0 -p1 -b .GLU
 install -pm 0644 %{SOURCE2} LICENSE
 
 
@@ -37,6 +42,8 @@ make %{?_smp_mflags}
 
 
 %install
+rm -rf $RPM_BUILD_ROOT
+
 # Binary
 install -d $RPM_BUILD_ROOT%{_bindir}
 install -pm 0755 skyviewer $RPM_BUILD_ROOT%{_bindir}
@@ -51,6 +58,10 @@ desktop-file-install --vendor='' %{SOURCE1} \
         --dir=$RPM_BUILD_ROOT%{_datadir}/applications
 
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+
 %pre
 /usr/bin/update-desktop-database >/dev/null 2>&1 || :
 
@@ -60,6 +71,7 @@ desktop-file-install --vendor='' %{SOURCE1} \
 
 
 %files
+%defattr(-,root,root,-)
 %{_bindir}/skyviewer
 %{_datadir}/pixmaps/skyviewer.png
 %{_datadir}/applications/skyviewer.desktop
@@ -67,6 +79,16 @@ desktop-file-install --vendor='' %{SOURCE1} \
 
 
 %changelog
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.0-13
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Thu Apr 25 2013 Tom Callaway <spot@fedoraproject.org> - 1.0.0-12
+- rebuild for new cfitsio
+- fix ftbfs, link to libGLU
+
+* Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.0-11
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.0-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
