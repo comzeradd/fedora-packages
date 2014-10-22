@@ -1,0 +1,91 @@
+diff -ur ../mirall-1.6.2.orig/src/CMakeLists.txt ./src/CMakeLists.txt
+--- ../mirall-1.6.2.orig/src/CMakeLists.txt	2014-09-01 16:42:25.915180676 +0300
++++ ./src/CMakeLists.txt	2014-09-01 16:37:11.696661073 +0300
+@@ -33,10 +33,6 @@
+ endif()
+ 
+ set(3rdparty_SRC
+-3rdparty/qtsingleapplication/qtsingleapplication.cpp
+-3rdparty/qtsingleapplication/qtlocalpeer.cpp
+-3rdparty/qtsingleapplication/qtsinglecoreapplication.cpp
+-3rdparty/qtlockedfile/qtlockedfile.cpp
+ 3rdparty/fancylineedit/fancylineedit.cpp
+ 3rdparty/QProgressIndicator/QProgressIndicator.cpp
+ )
+@@ -49,9 +45,6 @@
+ endif()
+ 
+ set(3rdparty_HEADER
+-3rdparty/qtsingleapplication/qtlocalpeer.h
+-3rdparty/qtsingleapplication/qtsingleapplication.h
+-3rdparty/qtsingleapplication/qtsinglecoreapplication.h
+ 3rdparty/fancylineedit/fancylineedit.h
+ 3rdparty/QProgressIndicator/QProgressIndicator.h
+ )
+@@ -63,15 +56,7 @@
+         )
+ endif()
+ 
+-if(NOT WIN32)
+-	list(APPEND 3rdparty_SRC 3rdparty/qtlockedfile/qtlockedfile_unix.cpp)
+-else()
+-	list(APPEND 3rdparty_SRC 3rdparty/qtlockedfile/qtlockedfile_win.cpp )
+-endif()
+-
+ set(3rdparty_INC
+-    ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qtlockedfile
+-    ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qtsingleapplication
+     ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/QProgressIndicator
+     ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/fancylineedit
+     ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qjson
+@@ -445,6 +430,8 @@
+   target_link_libraries( ${APPLICATION_EXECUTABLE} ${QT_LIBRARIES} )
+   target_link_libraries( ${APPLICATION_EXECUTABLE} ${synclib_NAME} )
+   target_link_libraries( ${APPLICATION_EXECUTABLE} updater )
++  target_link_libraries( ${APPLICATION_EXECUTABLE} QtSolutions_LockedFile-2.4 )
++  target_link_libraries( ${APPLICATION_EXECUTABLE} QtSolutions_SingleApplication-2.6 )
+   target_link_libraries( ${APPLICATION_EXECUTABLE} ${OS_SPECIFIC_LINK_LIBRARIES} )
+ 
+   install(TARGETS ${APPLICATION_EXECUTABLE}
+diff -ur ../mirall-1.6.2.orig/src/mirall/application.cpp ./src/mirall/application.cpp
+--- ../mirall-1.6.2.orig/src/mirall/application.cpp	2014-09-01 16:42:25.916180653 +0300
++++ ./src/mirall/application.cpp	2014-09-01 16:39:42.399073398 +0300
+@@ -79,7 +79,7 @@
+ // ----------------------------------------------------------------------------------
+ 
+ Application::Application(int &argc, char **argv) :
+-    SharedTools::QtSingleApplication(Theme::instance()->appName() ,argc, argv),
++    QtSingleApplication(Theme::instance()->appName() ,argc, argv),
+     _gui(0),
+     _theme(Theme::instance()),
+     _helpOnly(false),
+@@ -478,7 +478,7 @@
+         return true;
+     }
+ 
+-    return SharedTools::QtSingleApplication::winEventFilter(pMsg, result);
++    return QtSingleApplication::winEventFilter(pMsg, result);
+ }
+ #endif
+ 
+diff -ur ../mirall-1.6.2.orig/src/mirall/application.h ./src/mirall/application.h
+--- ../mirall-1.6.2.orig/src/mirall/application.h	2014-09-01 16:42:25.916180653 +0300
++++ ./src/mirall/application.h	2014-09-01 16:40:45.250577133 +0300
+@@ -20,7 +20,7 @@
+ #include <QQueue>
+ #include <QTimer>
+ 
+-#include "qtsingleapplication.h"
++#include <QtSolutions/QtSingleApplication>
+ 
+ #include "mirall/syncresult.h"
+ #include "mirall/logbrowser.h"
+@@ -40,7 +40,7 @@
+ class SslErrorDialog;
+ class SocketApi;
+ 
+-class Application : public SharedTools::QtSingleApplication
++class Application : public QtSingleApplication
+ {
+     Q_OBJECT
+ public:
