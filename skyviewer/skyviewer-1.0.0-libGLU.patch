@@ -1,0 +1,12 @@
+diff -up skyviewer-1.0.0/skyviewer.pro.GLU skyviewer-1.0.0/skyviewer.pro
+--- skyviewer-1.0.0/skyviewer.pro.GLU	2013-04-25 15:44:01.872896643 -0400
++++ skyviewer-1.0.0/skyviewer.pro	2013-04-25 15:44:06.164896708 -0400
+@@ -62,7 +62,7 @@ LANGUAGE = C++
+ TEMPLATE = app
+ CONFIG += release warn_on qt thread
+ CONFIG += thread
+-LIBS += -lcfitsio -lQGLViewer
++LIBS += -lcfitsio -lGLU -lQGLViewer
+ LIBS += -lchealpix
+ contains( QT_VERSION, "^4\..*" ){
+   QT *= xml opengl

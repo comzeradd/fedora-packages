@@ -1,0 +1,9 @@
+--- clipit-1.4.2/data/clipit-startup.desktop.in.orig	2013-09-12 10:49:12.700691560 +0300
++++ clipit-1.4.2/data/clipit-startup.desktop.in	2013-09-12 10:49:23.615723278 +0300
+@@ -5,5 +5,5 @@
+ Exec=clipit
+ Terminal=false
+ Type=Application
+-OnlyShowIn=GNOME;XFCE;LXDE;Unity;
++OnlyShowIn=GNOME;XFCE;
+ X-GNOME-Autostart-enabled=true

@@ -1,11 +1,19 @@
 Name:           clipit
 Version:        1.4.2
-Release:        2%{?dist}
+Release:        6%{?dist}
 Summary:        A lightweight, fully featured GTK+ clipboard manager
 
+Group:          User Interface/Desktops
 License:        GPLv3+
 URL:            http://clipit.rspwn.com/
 Source0:        http://downloads.sourceforge.net/gtk%{name}/%{name}-%{version}.tar.gz
+# clipit doesn't autostart in MATE
+# Fixed upstream but not yet merged
+Source1:        %{name}.appdata.xml
+Patch0:         %{name}-%{version}-mate.patch
+Patch1:         %{name}-%{version}-epel.patch
+
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: gtk2-devel
 BuildRequires: desktop-file-utils
@@ -26,7 +34,11 @@ ClipIts main features are:
 
 %prep
 %setup -q
-
+%if 0%{?fedora}
+%patch0 -p1 -b .orig
+%else
+%patch1 -p1 -b .orig
+%endif
 
 %build
 %configure
@@ -34,6 +46,7 @@ make %{?_smp_mflags}
 
 
 %install
+rm -rf %{buildroot}
 make install DESTDIR=%{buildroot}
 %find_lang %{name}
 desktop-file-install --delete-original \
@@ -43,6 +56,12 @@ desktop-file-install --delete-original \
 desktop-file-install --delete-original \
     --dir %{buildroot}%{_sysconfdir}/xdg/autostart \
     %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-startup.desktop
+mkdir -p %{buildroot}%{_datarootdir}/appdata/
+install -m 644 %{SOURCE1} %{buildroot}%{_datarootdir}/appdata/%{name}.appdata.xml
+
+
+%clean
+rm -rf %{buildroot}
 
 
 %post
@@ -59,32 +78,46 @@ fi
 
 
 %files -f %{name}.lang
+%defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README NEWS
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1.*
 %{_datadir}/icons/hicolor/scalable/apps/%{name}-trayicon.svg
 %{_datadir}/applications/%{name}.desktop
 %config(noreplace) %{_sysconfdir}/xdg/autostart/%{name}-startup.desktop
+%{_datarootdir}/appdata/%{name}.appdata.xml
 
 
 %changelog
+* Tue Apr 29 2014 Nikos Roussos <nikos@autoverse.net> 1.4.2-6
+- Add EPEL support
+
+* Thu Sep 12 2013 Nikos Roussos <nikos@autoverse.net> 1.4.2-5
+- Fix MATE autostart. Add appdata
+
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.2-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
 * Wed Jul 18 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
-* Fri Apr 27 2012 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.2-1
+* Fri Apr 27 2012 Nikos Roussos <nikos@autoverse.net> 1.4.2-1
 - Update to 1.4.2
 
-* Wed Feb 29 2012 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-5
+* Wed Feb 29 2012 Nikos Roussos <nikos@autoverse.net> 1.4.1-5
 - Fix gtk+ inclusion bug, see patch1
 
 * Thu Jan 12 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.1-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
-* Thu Jul 14 2011 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-3
+* Thu Jul 14 2011 Nikos Roussos <nikos@autoverse.net> 1.4.1-3
 - Fixed dependency missing, de translation bug, desktop icon bug
 
-* Fri Jul 01 2011 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-2
+* Fri Jul 01 2011 Nikos Roussos <nikos@autoverse.net> 1.4.1-2
 - Fixed config warning and more spec errors
 
-* Wed Jun 01 2011 Nikos Roussos <comzeradd@fedoraproject.org> 1.4.1-1
+* Wed Jun 01 2011 Nikos Roussos <nikos@autoverse.net> 1.4.1-1
 - Initial Fedora RPM

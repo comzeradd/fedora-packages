@@ -1,11 +1,16 @@
+%global commit c1ed43e6c9ef83d90c21027175dec348a14ec65e
+
 Name:           sparkleshare
-Version:        1.1.0
+Version:        1.2.0
 Release:        1%{?dist}
 Summary:        Easy file sharing based on git repositories
 
 License:        GPLv3
 URL:            http://www.sparkleshare.org/
-Source0:        https://github.com/downloads/hbons/SparkleShare/%{name}-linux-%{version}-tar.gz
+Source0:        https://github.com/hbons/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
+# Temporary fix on .desktop for Software Center
+# https://github.com/hbons/SparkleShare/pull/1393
+Patch0:         %{name}-%{version}-appdata.patch
 
 BuildRequires:  mono-devel
 BuildRequires:  ndesk-dbus-devel
@@ -13,14 +18,18 @@ BuildRequires:  ndesk-dbus-glib-devel
 BuildRequires:  notify-sharp-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
+BuildRequires:  libtool
 BuildRequires:  nant
 BuildRequires:  webkit-sharp-devel
-BuildRequires:  gettext
-BuildRequires:  gvfs-devel
+#BuildRequires:  webkitgtk-devel
+#BuildRequires:  gnome-sharp-devel
+#BuildRequires:  gettext
+#BuildRequires:  gvfs-devel
 Requires:       git >= 1.7.12
 Requires:       yelp
 
 ExclusiveArch:  %{mono_arches}
+ExcludeArch:    armv7hl
 
 
 #https://fedoraproject.org/wiki/Packaging:Mono#Empty_debuginfo
@@ -34,10 +43,12 @@ system and synchronized elsewhere.
 
 
 %prep
-%setup -q
+%setup -qn SparkleShare-%{commit}
+%patch0 -p1 -b .orig
 
 
 %build
+./autogen.sh
 %configure --prefix=/usr
 GMCS_FLAGS=-codepage:utf8 make
 
@@ -46,6 +57,10 @@ GMCS_FLAGS=-codepage:utf8 make
 make install DESTDIR=%{buildroot}
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}-invite-opener.desktop
+mkdir -p %{buildroot}%{_datarootdir}/appdata/
+install -m 644 \
+    %{_builddir}/SparkleShare-%{commit}/SparkleShare/Linux/%{name}.appdata.xml \
+    %{buildroot}%{_datadir}/appdata/%{name}.appdata.xml
 
 
 %post
@@ -81,9 +96,19 @@ fi
 %{_datadir}/icons/ubuntu-mono-dark/status/24/*
 %{_datadir}/icons/ubuntu-mono-light/status/24/*
 %doc legal/Authors.txt legal/License.txt legal/Trademark.txt News.txt README.md
+%{_datarootdir}/appdata/%{name}.appdata.xml
 
 
 %changelog
+* Tue Sep 23 2014 Nikos Roussos <comzeradd@fedoraproject.org> 1.2.0-1
+- Update to 1.2.0
+
+* Thu Sep 19 2013 Nikos Roussos <comzeradd@fedoraproject.org> 1.1.0-3
+- Add appdata file.
+
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Sun May 26 2013 Nikos Roussos <comzeradd@fedoraproject.org> 1.1.0-1
 - Update to 1.1.0
 

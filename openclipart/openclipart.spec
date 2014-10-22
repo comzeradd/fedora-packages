@@ -1,6 +1,6 @@
 Name:           openclipart
-Version:        0.18
-Release:        9%{?dist}
+Version:        2.0
+Release:        1%{?dist}
 Summary:        Open Clip Art Library
 
 Group:          Applications/Publishing
@@ -49,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Mar 17 2014 Nikos Roussos <comzeradd@fedoraproject.org> 2.0-1
+- Update to 2.0
+
 * Sat Aug 10 2013 Nikos Roussos <comzeradd@fedoraproject.org> 0.18-9
 - Fix description typo
 

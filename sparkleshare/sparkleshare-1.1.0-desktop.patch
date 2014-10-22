@@ -1,0 +1,10 @@
+--- SparkleShare/SparkleShare/Linux/sparkleshare.desktop.orig	2013-09-19 11:55:06.341947522 +0300
++++ SparkleShare/SparkleShare/Linux/sparkleshare.desktop	2013-09-19 11:55:14.368953931 +0300
+@@ -1,6 +1,7 @@
+ [Desktop Entry]
+ Type=Application
+ Name=SparkleShare
++Comment=Easy file sharing based on git repositories
+ Exec=sparkleshare start
+ Icon=sparkleshare
+ Terminal=false

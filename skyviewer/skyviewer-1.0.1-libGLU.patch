@@ -1,0 +1,11 @@
+--- skyviewer-1.0.1/skyviewer.pro.orig	2014-03-11 23:16:34.000000000 +0200
++++ skyviewer-1.0.1/skyviewer.pro	2014-07-04 11:45:36.142772244 +0300
+@@ -62,7 +62,7 @@
+ TEMPLATE = app
+ CONFIG += release warn_on qt thread
+ CONFIG += thread
+-LIBS += -lcfitsio -lQGLViewer
++LIBS += -lcfitsio -lGLU -lQGLViewer
+ LIBS += -lchealpix
+ contains( QT_VERSION, "^4\..*" ){
+   QT *= xml opengl

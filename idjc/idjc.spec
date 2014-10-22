@@ -1,11 +1,11 @@
 Name:           idjc
-Version:        0.8.9
+Version:        0.8.14
 Release:        1%{?dist}
 Summary:        DJ application for streaming audio
 
 License:        GPLv2+
 URL:            http://idjc.sourceforge.net
-Source0:        http://downloads.sourceforge.net/project/idjc/idjc/0.8/%{name}-%{version}.tar.gz
+Source0:       http://downloads.sourceforge.net/project/idjc/idjc/0.8/%{name}-%{version}.tar.gz
 Source1:        %{name}-README.Fedora
 
 
@@ -64,13 +64,21 @@ desktop-file-install --delete-original \
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/
 %{_mandir}/man1/%{name}*
+%lang(fr) %{_mandir}/fr/man1/%{name}*
 %{_datadir}/pixmaps/%{name}.png
-%doc COPYING README AUTHORS ChangeLog NEWS README.Fedora doc/*.html doc/*.css doc/*.png
+%doc %{_docdir}/%{name}-%{version}/README.gz
+%doc %{_docdir}/%{name}-%{version}/AUTHORS.gz
+%doc %{_docdir}/%{name}-%{version}/ChangeLog.gz
+%doc %{_docdir}/%{name}-%{version}/NEWS.gz
+%doc COPYING README.Fedora doc/*.html doc/*.css doc/*.png
 
 
 %changelog
-* Sat May 11 2013 Nikos Roussos <comzeradd@fedoraproject.org> - 0.8.9-1
-- Update to 0.8.9
+* Mon May 19 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 0.8.14-1
+- Update to 0.8.14
+
+* Mon Jan 13 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 0.8.13-1
+- Update to 0.8.13
 
 * Sat Dec 01 2012 Nikos Roussos <comzeradd@fedoraproject.org> 0.8.8-1
 - Update to 0.8.8

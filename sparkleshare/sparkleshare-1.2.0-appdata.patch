@@ -1,0 +1,11 @@
+--- SparkleShare-c1ed43e6c9ef83d90c21027175dec348a14ec65e/SparkleShare/Linux/sparkleshare.appdata.xml.orig	2013-10-08 13:42:23.000000000 +0300
++++ SparkleShare-c1ed43e6c9ef83d90c21027175dec348a14ec65e/SparkleShare/Linux/sparkleshare.appdata.xml	2013-11-14 13:29:44.356799787 +0200
+@@ -22,5 +22,8 @@
+     </ul>
+     <p>Have fun!</p>
+   </description>
++  <screenshots>
++    <screenshot type="default" width="682" height="433">https://comzeradd.fedorapeople.org/screenshots/sparkleshare1.png</screenshot>
++  </screenshots>
+   <url type="homepage">http://www.sparkleshare.org/</url>
+ </application>

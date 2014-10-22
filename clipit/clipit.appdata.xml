@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+ <id type="desktop">clipit.desktop</id>
+ <licence>CC0</licence>
+ <name>ClipIt</name>
+ <summary>A lightweight, fully featured clipboard manager</summary>
+ <description>
+  <p>
+  ClipIt is a lightweight, fully featured GTK+ clipboard manager.
+  It was forked from Parcellite, adding additional features and bug-fixes to the project.
+  </p>
+  <p>ClipIts main features are:</p>
+  <ul>
+   <li>Save a history of your last copied items</li>
+   <li>Search through the history</li>
+   <li>Global hot-keys for most used functions</li>
+   <li>Execute actions with clipboard items</li>
+   <li>Exclude specific items from history</li>
+  </ul>
+ </description>
+ <screenshots>
+  <screenshot type="default" width="300" height="294">http://clipit.rspwn.com/files/2011/01/screenshot-300x294.jpg</screenshot>
+  <screenshot width="300" height="291">http://clipit.rspwn.com/files/2011/01/screenshot4-300x291.jpg</screenshot>
+ </screenshots>
+ <url type="homepage">http://clipit.rspwn.com/</url>
+</application>

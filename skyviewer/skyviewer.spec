@@ -1,6 +1,6 @@
 Name:           skyviewer
-Version:        1.0.0
-Release:        13%{?dist}
+Version:        1.0.1
+Release:        1%{?dist}
 Summary:        Program to display HEALPix-based skymaps in FITS files
 
 Group:          Amusements/Graphics
@@ -8,9 +8,7 @@ License:        Public Domain
 URL:            http://lambda.gsfc.nasa.gov/toolbox/tb_skyviewer_ov.cfm
 Source0:        http://lambda.gsfc.nasa.gov/toolbox/skyviewer/%{name}-%{version}.tar.gz
 Source1:        skyviewer.desktop
-# Will be included in the next release
-Source2:        skyviewer-license.txt
-Patch0:		skyviewer-1.0.0-libGLU.patch
+Patch0:         skyviewer-1.0.1-libGLU.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  cfitsio-devel
@@ -18,7 +16,7 @@ BuildRequires:  chealpix-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  libQGLViewer-devel
 BuildRequires:  qt4-devel
-BuildRequires:	mesa-libGLU-devel
+BuildRequires:  mesa-libGLU-devel
 
 %description
 SkyViewer is an OpenGL based program to display HEALPix-based skymaps,
@@ -31,7 +29,6 @@ assuming you have a strong enough graphics card.
 %prep
 %setup -q
 %patch0 -p1 -b .GLU
-install -pm 0644 %{SOURCE2} LICENSE
 
 
 %build
@@ -75,10 +72,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/skyviewer
 %{_datadir}/pixmaps/skyviewer.png
 %{_datadir}/applications/skyviewer.desktop
-%doc test_iqu.fits README.txt LICENSE general.txt notes-ngp.txt
+%doc test_iqu.fits README.txt License.txt general.txt notes-ngp.txt
 
 
 %changelog
+* Fri Jul 04 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 1.0.1-1
+- Update to 1.0.1
+
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.0-15
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Thu Jan 09 2014 Orion Poplawski <orion@cora.nwra.com> - 1.0.0-14
+- Rebuild for cfitsio 3.360
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.0-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
