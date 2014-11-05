@@ -1,15 +1,13 @@
-%global commit 80b73555924bc780b69da8b5974338fff1441829
+%global commit 8998e7b2c5587f0b94c48db24e2952d08def5add
 
 Name:           libsearpc
 Version:        3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A simple and easy-to-use C language RPC framework
 
 License:        GPLv3
 URL:            https://github.com/haiwen/%{name}
 Source0:        https://github.com/haiwen/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
-# Upstream bug: https://github.com/haiwen/libsearpc/pull/18
-Patch0:         %{name}-obsolete-m4.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -38,7 +36,6 @@ applications that use %{name}.
 
 %prep
 %setup -qn %{name}-%{commit}
-%patch0 -p1 -b .orig
 sed -i -e /\(DESTDIR\)/d %{name}.pc.in
 
 
@@ -70,5 +67,9 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Wed Nov 05 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 3.0-2
+- Update to latest tag
+- Remove merged patch
+
 * Tue Aug 12 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 3.0-1
 - Initial version of the package
