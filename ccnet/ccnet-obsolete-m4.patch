@@ -1,0 +1,11 @@
+--- ccnet-6b55658280da8c74d9a41fee7d0d0bc1cb7c8c5f/configure.ac.orig	2014-08-12 21:23:17.504316435 +0300
++++ ccnet-6b55658280da8c74d9a41fee7d0d0bc1cb7c8c5f/configure.ac	2014-08-12 21:22:43.078244681 +0300
+@@ -23,7 +23,7 @@
+ AC_C_CONST
+ AC_PROG_MAKE_SET
+ # AC_PROG_RANLIB
+-AC_PROG_LIBTOOL
++LT_INIT
+ 
+ # Checks for headers.
+ AC_CHECK_HEADERS([sys/ioctl.h sys/time.h stdarg.h])
