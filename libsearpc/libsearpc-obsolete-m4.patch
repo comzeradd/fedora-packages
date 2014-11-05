@@ -1,0 +1,11 @@
+--- libsearpc-80b73555924bc780b69da8b5974338fff1441829/configure.ac.orig	2014-08-12 14:47:08.653835491 +0300
++++ libsearpc-80b73555924bc780b69da8b5974338fff1441829/configure.ac	2014-08-12 14:46:49.653845453 +0300
+@@ -12,7 +12,7 @@
+ AC_MINGW32
+ # Checks for programs.
+ AC_PROG_CC
+-AC_PROG_LIBTOOL
++LT_INIT
+ 
+ # Checks for header files.
+ #AC_CHECK_HEADERS([arpa/inet.h netinet/in.h stdint.h stdlib.h string.h sys/socket.h sys/time.h unistd.h])
