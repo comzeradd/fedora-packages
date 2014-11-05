@@ -1,7 +1,7 @@
-%global commit 6b55658280da8c74d9a41fee7d0d0bc1cb7c8c5f
+%global commit dd3f1fab491dfcec8b8ca30dbcc75b890cb3529a
 
 Name:           ccnet
-Version:        3.1.4
+Version:        3.1.8
 Release:        1%{?dist}
 Summary:        A framework for writing networked applications in C
 
@@ -87,5 +87,8 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 
 %changelog
+* Wed Nov 05 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 3.1.8-1
+- Update to 3.1.8
+
 * Tue Aug 12 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 3.1.4-1
 - Initial version of the package
