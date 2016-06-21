@@ -1,0 +1,101 @@
+diff -u --exclude CVS --exclude .svn --exclude .bzr -r client-1.8.0-beta2.orig/src/3rdparty/qtsingleapplication/qtlocalpeer.h client-1.8.0-beta2/src/3rdparty/qtsingleapplication/qtlocalpeer.h
+--- client-1.8.0-beta2.orig/src/3rdparty/qtsingleapplication/qtlocalpeer.h	2015-03-04 13:50:55.000000000 +0100
++++ client-1.8.0-beta2/src/3rdparty/qtsingleapplication/qtlocalpeer.h	2015-03-09 22:28:22.536743646 +0100
+@@ -27,7 +27,7 @@
+ **
+ ****************************************************************************/
+ 
+-#include <qtlockedfile.h>
++#include <QTSolutions/qtlockedfile.h>
+ 
+ #include <QLocalServer>
+ #include <QLocalSocket>
+Seulement dans client-1.8.0-beta2/src/3rdparty/qtsingleapplication: qtlocalpeer.h~
+diff -u --exclude CVS --exclude .svn --exclude .bzr -r client-1.8.0-beta2.orig/src/gui/CMakeLists.txt client-1.8.0-beta2/src/gui/CMakeLists.txt
+--- client-1.8.0-beta2.orig/src/gui/CMakeLists.txt	2015-03-04 13:50:55.000000000 +0100
++++ client-1.8.0-beta2/src/gui/CMakeLists.txt	2015-03-09 22:34:08.593537799 +0100
+@@ -107,10 +107,6 @@
+ set(3rdparty_SRC
+     ../3rdparty/fancylineedit/fancylineedit.cpp
+     ../3rdparty/QProgressIndicator/QProgressIndicator.cpp
+-    ../3rdparty/qtlockedfile/qtlockedfile.cpp
+-    ../3rdparty/qtsingleapplication/qtlocalpeer.cpp
+-    ../3rdparty/qtsingleapplication/qtsingleapplication.cpp
+-    ../3rdparty/qtsingleapplication/qtsinglecoreapplication.cpp
+     ../3rdparty/certificates/p12topem.cpp
+    )
+ 
+@@ -122,19 +118,11 @@
+         )
+ endif()
+ 
+-if(NOT WIN32)
+-   list(APPEND 3rdparty_SRC ../3rdparty/qtlockedfile/qtlockedfile_unix.cpp)
+-else()
+-   list(APPEND 3rdparty_SRC ../3rdparty/qtlockedfile/qtlockedfile_win.cpp )
+-endif()
+-
+ set(3rdparty_INC
+     ${CMAKE_SOURCE_DIR}/src/3rdparty/fancylineedit
+     ${CMAKE_SOURCE_DIR}/src/3rdparty/qjson
+     ${CMAKE_SOURCE_DIR}/src/3rdparty/QProgressIndicator
+-    ${CMAKE_SOURCE_DIR}/src/3rdparty/qtlockedfile
+     ${CMAKE_SOURCE_DIR}/src/3rdparty/qtmacgoodies/src
+-    ${CMAKE_SOURCE_DIR}/src/3rdparty/qtsingleapplication
+     )
+ 
+ include_directories(${3rdparty_INC})
+@@ -239,6 +227,8 @@
+ target_link_libraries( ${APPLICATION_EXECUTABLE} ${QT_LIBRARIES} )
+ target_link_libraries( ${APPLICATION_EXECUTABLE} ${synclib_NAME} )
+ target_link_libraries( ${APPLICATION_EXECUTABLE} updater )
++target_link_libraries( ${APPLICATION_EXECUTABLE} QtSolutions_LockedFile-2.4 )
++target_link_libraries( ${APPLICATION_EXECUTABLE} QtSolutions_SingleApplication-2.6 )
+ target_link_libraries( ${APPLICATION_EXECUTABLE} ${OS_SPECIFIC_LINK_LIBRARIES} )
+ 
+ if(WITH_CRASHREPORTER)
+Seulement dans client-1.8.0-beta2/src/gui: CMakeLists.txt~
+diff -u --exclude CVS --exclude .svn --exclude .bzr -r client-1.8.0-beta2.orig/src/gui/application.cpp client-1.8.0-beta2/src/gui/application.cpp
+--- client-1.8.0-beta2.orig/src/gui/application.cpp	2015-03-04 13:50:55.000000000 +0100
++++ client-1.8.0-beta2/src/gui/application.cpp	2015-03-09 22:37:39.509145961 +0100
+@@ -80,7 +80,7 @@
+ // ----------------------------------------------------------------------------------
+ 
+ Application::Application(int &argc, char **argv) :
+-    SharedTools::QtSingleApplication(Theme::instance()->appName() ,argc, argv),
++    QtSingleApplication(Theme::instance()->appName() ,argc, argv),
+     _gui(0),
+     _theme(Theme::instance()),
+     _helpOnly(false),
+@@ -481,7 +481,7 @@
+         return true;
+     }
+ 
+-    return SharedTools::QtSingleApplication::winEventFilter(pMsg, result);
++    return QtSingleApplication::winEventFilter(pMsg, result);
+ }
+ #endif
+ 
+Seulement dans client-1.8.0-beta2/src/gui: application.cpp~
+diff -u --exclude CVS --exclude .svn --exclude .bzr -r client-1.8.0-beta2.orig/src/gui/application.h client-1.8.0-beta2/src/gui/application.h
+--- client-1.8.0-beta2.orig/src/gui/application.h	2015-03-04 13:50:55.000000000 +0100
++++ client-1.8.0-beta2/src/gui/application.h	2015-03-09 22:39:01.327442281 +0100
+@@ -20,7 +20,7 @@
+ #include <QQueue>
+ #include <QTimer>
+ 
+-#include "qtsingleapplication.h"
++#include "QtSolutions/QtSingleApplication"
+ 
+ #include "syncresult.h"
+ #include "logbrowser.h"
+@@ -39,7 +39,7 @@
+ class Folder;
+ class SslErrorDialog;
+ 
+-class Application : public SharedTools::QtSingleApplication
++class Application : public QtSingleApplication
+ {
+     Q_OBJECT
+ public:
+Seulement dans client-1.8.0-beta2/src/gui: application.h~

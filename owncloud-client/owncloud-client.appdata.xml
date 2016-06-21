@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+ <id type="desktop">owncloud-client.desktop</id>
+ <licence>CC0</licence>
+ <name>Owncloud Desktop Client</name>
+ <summary>The ownCloud desktop client, lets you sync directly to your ownCloud server</summary>
+ <description>
+  <p>
+    Owncloud-client enables you to connect to your private ownCloud Server. With it you can create folders in your home directory, and keep the contents of those folders synced with your ownCloud server. Simply copy a file into   the directory and the ownCloud Client does the rest.
+  </p>
+ </description>
+ <screenshots>
+  <screenshot type="default" width="713" height="501">https://comzeradd.fedorapeople.org/screenshots/owncloud1.jpg</screenshot>
+ </screenshots>
+ <url type="homepage">https://owncloud.org/</url>
+</application>

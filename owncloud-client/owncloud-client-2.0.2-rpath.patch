@@ -1,0 +1,48 @@
+diff -ur owncloudclient-2.0.2.orig/src/cmd/CMakeLists.txt owncloudclient-2.0.2/src/cmd/CMakeLists.txt
+--- owncloudclient-2.0.2.orig/src/cmd/CMakeLists.txt	2015-12-02 13:46:07.288963072 +0200
++++ owncloudclient-2.0.2/src/cmd/CMakeLists.txt	2015-12-02 14:03:26.303105283 +0200
+@@ -23,7 +23,7 @@
+ 	set_target_properties(${cmd_NAME} PROPERTIES
+ 	        RUNTIME_OUTPUT_DIRECTORY  ${BIN_OUTPUT_DIRECTORY} )
+         set_target_properties(${cmd_NAME} PROPERTIES
+-		INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
++		INSTALL_RPATH "${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
+ 
+ 	target_link_libraries(${cmd_NAME} ${synclib_NAME})
+ endif()
+diff -ur owncloudclient-2.0.2.orig/src/crashreporter/CMakeLists.txt owncloudclient-2.0.2/src/crashreporter/CMakeLists.txt
+--- owncloudclient-2.0.2.orig/src/crashreporter/CMakeLists.txt	2015-12-02 13:46:07.288963072 +0200
++++ owncloudclient-2.0.2/src/crashreporter/CMakeLists.txt	2015-12-02 14:04:01.983207592 +0200
+@@ -36,7 +36,7 @@
+ 
+     set_target_properties(${CRASHREPORTER_EXECUTABLE} PROPERTIES AUTOMOC ON)
+     set_target_properties(${CRASHREPORTER_EXECUTABLE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY  ${BIN_OUTPUT_DIRECTORY} )
+-    set_target_properties(${CRASHREPORTER_EXECUTABLE} PROPERTIES INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
++    set_target_properties(${CRASHREPORTER_EXECUTABLE} PROPERTIES INSTALL_RPATH "${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
+     target_link_libraries(${CRASHREPORTER_EXECUTABLE}
+         crashreporter-gui
+         ${QT_LIBRARIES}
+diff -ur owncloudclient-2.0.2.orig/src/gui/CMakeLists.txt owncloudclient-2.0.2/src/gui/CMakeLists.txt
+--- owncloudclient-2.0.2.orig/src/gui/CMakeLists.txt	2015-12-02 13:46:07.289963075 +0200
++++ owncloudclient-2.0.2/src/gui/CMakeLists.txt	2015-12-02 14:04:23.038267966 +0200
+@@ -260,7 +260,7 @@
+ )
+ # Only relevant for Linux? On OS X it by default properly checks in the bundle directory next to the exe
+ set_target_properties( ${APPLICATION_EXECUTABLE} PROPERTIES
+-	INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
++	INSTALL_RPATH "${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
+ 
+ target_link_libraries( ${APPLICATION_EXECUTABLE} ${QT_LIBRARIES} )
+ target_link_libraries( ${APPLICATION_EXECUTABLE} ${synclib_NAME} )
+diff -ur owncloudclient-2.0.2.orig/src/libsync/CMakeLists.txt owncloudclient-2.0.2/src/libsync/CMakeLists.txt
+--- owncloudclient-2.0.2.orig/src/libsync/CMakeLists.txt	2015-12-02 13:46:07.307963119 +0200
++++ owncloudclient-2.0.2/src/libsync/CMakeLists.txt	2015-12-02 14:04:41.239319248 +0200
+@@ -158,7 +158,7 @@
+ 	RUNTIME_OUTPUT_DIRECTORY ${BIN_OUTPUT_DIRECTORY}
+ )
+ set_target_properties( ${synclib_NAME} PROPERTIES
+-	INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
++	INSTALL_RPATH "${LIB_INSTALL_DIR}/${APPLICATION_EXECUTABLE}" )
+ 
+ target_link_libraries(${synclib_NAME} ${libsync_LINK_TARGETS} )
+ 
