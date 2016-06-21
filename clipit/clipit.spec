@@ -1,6 +1,6 @@
 Name:           clipit
 Version:        1.4.2
-Release:        6%{?dist}
+Release:        9%{?dist}
 Summary:        A lightweight, fully featured GTK+ clipboard manager
 
 Group:          User Interface/Desktops
@@ -19,6 +19,7 @@ BuildRequires: gtk2-devel
 BuildRequires: desktop-file-utils
 BuildRequires: intltool
 BuildRequires: gettext
+BuildRequires: libappstream-glib
 Requires: xdotool
 
 %description
@@ -56,8 +57,12 @@ desktop-file-install --delete-original \
 desktop-file-install --delete-original \
     --dir %{buildroot}%{_sysconfdir}/xdg/autostart \
     %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-startup.desktop
-mkdir -p %{buildroot}%{_datarootdir}/appdata/
-install -m 644 %{SOURCE1} %{buildroot}%{_datarootdir}/appdata/%{name}.appdata.xml
+mkdir -p %{buildroot}%{_datadir}/appdata/
+install -m 644 %{SOURCE1} %{buildroot}%{_datadir}/appdata/%{name}.appdata.xml
+
+
+%check
+appstream-util validate-relax %{buildroot}%{_datadir}/appdata/%{name}.appdata.xml
 
 
 %clean
@@ -85,11 +90,20 @@ fi
 %{_datadir}/icons/hicolor/scalable/apps/%{name}-trayicon.svg
 %{_datadir}/applications/%{name}.desktop
 %config(noreplace) %{_sysconfdir}/xdg/autostart/%{name}-startup.desktop
-%{_datarootdir}/appdata/%{name}.appdata.xml
+%{_datadir}/appdata/%{name}.appdata.xml
 
 
 %changelog
-* Tue Apr 29 2014 Nikos Roussos <nikos@autoverse.net> 1.4.2-6
+* Mon Dec 15 2014 Nikos Roussos <nikos@autoverse.net> 1.4.2-9
+- Fix appdata syntax
+
+* Sat Aug 16 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.2-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.2-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Fri May 02 2014 Nikos Roussos <nikos@autoverse.net> 1.4.2-6
 - Add EPEL support
 
 * Thu Sep 12 2013 Nikos Roussos <nikos@autoverse.net> 1.4.2-5
