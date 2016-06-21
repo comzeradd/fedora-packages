@@ -1,0 +1,11 @@
+--- dnscrypt-proxy-1.6.1/src/libevent-modified/configure.ac.orig	2016-06-06 13:09:02.601130845 +0300
++++ dnscrypt-proxy-1.6.1/src/libevent-modified/configure.ac	2016-06-06 13:09:33.447274580 +0300
+@@ -99,7 +99,7 @@
+ 	[], [enable_function_sections=no])
+ 
+ 
+-AC_PROG_LIBTOOL
++LT_INIT
+ 
+ dnl   Uncomment "AC_DISABLE_SHARED" to make shared librraries not get
+ dnl   built by default.  You can also turn shared libs on and off from
