@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+ <id type="desktop">git-cola.desktop</id>
+ <licence>CC0</licence>
+ <name>git-cola</name>
+ <summary>A sleek and powerful git GUI</summary>
+ <description>
+  <p>
+    git-cola is a powerful git GUI with a slick and intuitive user interface.
+  </p>
+ </description>
+ <screenshots>
+  <screenshot type="default" width="963" height="555">https://git-cola.github.io/images/main.png</screenshot>
+  <screenshot type="default" width="1276" height="778">https://git-cola.github.io/images/dag.png</screenshot>
+ </screenshots>
+ <url type="homepage">https://git-cola.github.io/</url>
+</application>
