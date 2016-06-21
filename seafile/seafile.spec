@@ -1,13 +1,13 @@
-%global commit c81b8c8ef32dae6ae9b8cc9d3a2bb8cbada08c13
+%global _hardened_build 1
 
 Name:           seafile
-Version:        3.1.8
-Release:        1%{?dist}
-Summary:        Cloud storage system
+Version:        5.1.2
+Release:        3%{?dist}
+Summary:        Cloud storage cli client
 
-License:        GPLv3
+License:        GPLv2
 URL:            http://seafile.com/
-Source0:        https://github.com/haiwen/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
+Source0:        https://github.com/haiwen/%{name}/archive/v%{version}-server.tar.gz
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -16,10 +16,16 @@ BuildRequires:  intltool
 BuildRequires:  glib2-devel
 BuildRequires:  sqlite-devel
 BuildRequires:  openssl-devel
-BuildRequires:  libevent-devel
 BuildRequires:  libuuid-devel
-BuildRequires:  ccnet-devel
+BuildRequires:  libcurl-devel
+BuildRequires:  libarchive-devel
+BuildRequires:  libzdb-devel
+BuildRequires:  fuse-devel >= 2.7.3
+BuildRequires:  ccnet-devel == %{version}
 BuildRequires:  vala
+BuildRequires:  python2-devel
+BuildRequires:  libevent-devel
+BuildRequires:  jansson-devel
 
 
 %description
@@ -42,14 +48,14 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -qn %{name}-%{commit}
+%setup -qn %{name}-%{version}-server
 sed -i -e /\(DESTDIR\)/d lib/libseafile.pc.in
 
 
 %build
 ./autogen.sh
-%configure --disable-static --disable-server --enable-client --disable-fuse
-make
+%configure --disable-static
+make CFLAGS="%{optflags}" %{?_smp_mflags} 
 
 
 %install
@@ -57,31 +63,55 @@ make install DESTDIR=%{buildroot}
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 find %{buildroot} -name 'seafile.desktop' -exec rm -f {} ';'
 
-
 %post -p /sbin/ldconfig
-
-
 %postun -p /sbin/ldconfig
+
+%post devel -p /sbin/ldconfig
+%postun devel -p /sbin/ldconfig
 
 
 %files
-%doc LICENCE.txt README.markdown
-%{_libdir}/*
-%{python_sitearch}/%{name}/
-%{python_sitearch}/seaserv/
+%doc README.markdown
+%license LICENSE.txt
+%{python2_sitearch}/%{name}/
+%{python2_sitearch}/seaserv/
+%{_libdir}/lib%{name}.so.*
 %{_bindir}/seaf-cli
 %{_bindir}/seaf-daemon
-%{_bindir}/%{name}
-%{_mandir}/man1/*.1.gz
+%{_mandir}/man1/*.1.*
 
 
 %files devel
+%doc README.markdown
+%license LICENSE.txt
 %{_includedir}/%{name}/
-%{_libdir}/*
+%{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/lib%{name}.pc
 
 
 %changelog
+* Tue May 31 2016 Nikos Roussos <comzeradd@fedoraproject.org> - 5.1.2-3
+- Fix license
+
+* Fri May 27 2016 Nikos Roussos <comzeradd@fedoraproject.org> - 5.1.2-2
+- Fix shared libraries
+
+* Tue May 17 2016 Nikos Roussos <comzeradd@fedoraproject.org> - 5.1.2-1
+- Update to 5.1.2
+- Add missing requiremnts
+- Add missing license file from subpackage
+- Add tests
+
+* Mon Feb 08 2016 Nikos Roussos <comzeradd@fedoraproject.org> - 5.0.5-1
+- Update to 5.0.5
+
+* Wed Sep 16 2015 Nikos Roussos <comzeradd@fedoraproject.org> - 4.3.4-1
+- Update to 4.3.4
+
+* Sat Apr 11 2015 Nikos Roussos <comzeradd@fedoraproject.org> - 4.1.4-1
+- Update to 4.1.4
+- Hardened build
+
 * Wed Nov 05 2014 Nikos Roussos <comzeradd@fedoraproject.org> - 3.1.8-1
 - Update to 3.1.8
 
